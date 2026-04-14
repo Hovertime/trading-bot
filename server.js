@@ -38,6 +38,23 @@ app.get('/', (_req, res) => {
   res.send('Telegram signal relay is running');
 });
 
+app.get('/test', async (req, res) => {
+  try {
+    const text = req.query.text || 'TEST';
+    const result = await sendTelegramMessage(text);
+
+    res.json({
+      ok: true,
+      telegram: result
+    });
+  } catch (err) {
+    res.status(500).json({
+      ok: false,
+      error: err.message
+    });
+  }
+});
+
 app.post('/signal', async (req, res) => {
   try {
     const { text } = req.body;

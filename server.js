@@ -12,7 +12,7 @@ async function sendTelegramMessage(text) {
     throw new Error('BOT_TOKEN or CHAT_ID is missing');
   }
 
-  const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
   const res = await fetch(url, {
     method: 'POST',
@@ -28,7 +28,7 @@ async function sendTelegramMessage(text) {
   const data = await res.json();
 
   if (!data.ok) {
-    throw new Error(Telegram API error: ${JSON.stringify(data)});
+    throw new Error(`Telegram API error: ${JSON.stringify(data)}`);
   }
 
   return data;
@@ -64,5 +64,5 @@ app.post('/signal', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(Server started on port ${PORT});
+  console.log(`Server started on port ${PORT}`);
 });

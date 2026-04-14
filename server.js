@@ -12,7 +12,7 @@ async function sendTelegramMessage(text) {
     throw new Error('BOT_TOKEN or CHAT_ID is missing');
   }
 
-  const url = https://api.telegram.org/bot${BOT_TOKEN}/sendMessage;
+  const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
 
   const res = await fetch(url, {
     method: 'POST',
